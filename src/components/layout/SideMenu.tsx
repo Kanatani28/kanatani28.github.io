@@ -16,6 +16,7 @@ import routes from "../../routes";
 import { FaTwitterSquare, FaFacebookSquare } from "react-icons/fa";
 import { SiHatenabookmark } from "react-icons/si";
 import { IconType } from "react-icons/lib";
+import { motion, MotionProps } from "framer-motion";
 
 const MenuButton = ({ children }: { children: string | JSX.Element }) => (
   <Box p={3} opacity={0.7} _hover={{ opacity: 1 }}>
@@ -83,29 +84,43 @@ const SocialButton = ({ url, icon }: SnsType) => (
   </a>
 );
 
-const SideMenu = React.memo(() => (
-  <Flex
-    direction="column"
-    h="100%"
-    justifyContent="flex-end"
-    pb={3}
-    bgColor="yellow"
-  >
-    <nav>
-      <ul style={{ listStyle: "none" }}>
-        {routes.map((route) => (
-          <li key={route.path}>
-            <Link to={route.path}>
-              <MenuButton>{route.name}</MenuButton>
-            </Link>
+const menuAnimation: (i: number) => MotionProps = (i) => {
+  return {
+    initial: { y: `20vh`, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    transition: { duration: 1.5, delay: i * i * 0.1 },
+  };
+};
+
+const SideMenu = React.memo(() => {
+  return (
+    <Flex
+      direction="column"
+      h="100%"
+      justifyContent="flex-end"
+      pb={3}
+      bgColor="yellow"
+    >
+      <nav>
+        <ul style={{ listStyle: "none" }}>
+          {routes.map((route, i) => (
+            <li key={route.path}>
+              <motion.div {...menuAnimation(i)}>
+                <Link to={route.path}>
+                  <MenuButton>{route.name}</MenuButton>
+                </Link>
+              </motion.div>
+            </li>
+          ))}
+          <li>
+            <motion.div {...menuAnimation(routes.length)}>
+              <ShareButton />
+            </motion.div>
           </li>
-        ))}
-        <li>
-          <ShareButton />
-        </li>
-      </ul>
-    </nav>
-  </Flex>
-));
+        </ul>
+      </nav>
+    </Flex>
+  );
+});
 
 export default SideMenu;
