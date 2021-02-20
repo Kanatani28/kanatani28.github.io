@@ -10,9 +10,6 @@ const theme = {
         height: "100%",
         overflow: "hidden",
       },
-      "#root": {
-        padding: "3rem",
-      },
     },
   },
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useInterval } from "@chakra-ui/react";
+import { useBreakpointValue, useInterval } from "@chakra-ui/react";
 import usePageVisibility from "../../hooks/usePageVisibility";
 
 const randomImages = () => {
@@ -28,18 +28,20 @@ const Home = () => {
   const images = randomImages();
   const [dispImages, setDispImages] = useState<string[]>(images);
 
-  const [height, setHeight] = useState<number>(0);
+  const [imageY, setImageY] = useState<number>(0);
   const isPageVisible: boolean = usePageVisibility();
   useInterval(() => {
     if (!isPageVisible) {
       return;
     }
-    setHeight(height + 2);
-    console.log(height);
-    if (height % 5800 === 0) {
+    setImageY(imageY + 2);
+    console.log(imageY);
+    if (imageY % 5800 === 0) {
       setDispImages([...dispImages, ...images]);
     }
   }, 100);
+
+  const imageHehght = useBreakpointValue({ base: "30%", md: "100%" });
 
   return (
     <>
@@ -66,16 +68,16 @@ const Home = () => {
             key={`image-${i}`}
             initial={false}
             animate={{
-              y: `-${height}px`,
+              y: `-${imageY}px`,
             }}
             transition={{
               // duration: 20,
               repeat: Infinity,
             }}
             style={{
-              height: "100%",
-              backgroundImage: `url(${process.env.PUBLIC_URL}/images/${image})`,
-              backgroundSize: "cover",
+              height: imageHehght,
+              background: `url(${process.env.PUBLIC_URL}/images/${image}) no-repeat center center`,
+              backgroundSize: "100% auto",
             }}
           ></motion.div>
         ))}

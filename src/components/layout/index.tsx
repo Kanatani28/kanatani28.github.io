@@ -16,6 +16,7 @@ const Layout = React.memo(() => {
       h="100%"
       templateColumns="repeat(5, 1fr)"
       templateRows="1fr max-content"
+      p={["1rem", "2rem", "3rem"]}
     >
       <GridItem colSpan={1}>
         <SideMenu />
