@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInterval } from "@chakra-ui/react";
+import usePageVisibility from "../../hooks/usePageVisibility";
 
 const randomImages = () => {
   const images = [
@@ -28,7 +29,11 @@ const Home = () => {
   const [dispImages, setDispImages] = useState<string[]>(images);
 
   const [height, setHeight] = useState<number>(0);
+  const isPageVisible: boolean = usePageVisibility();
   useInterval(() => {
+    if (!isPageVisible) {
+      return;
+    }
     setHeight(height + 2);
     console.log(height);
     if (height % 5800 === 0) {
