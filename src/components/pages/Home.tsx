@@ -61,7 +61,7 @@ const Home = () => {
             }}
             style={{
               height: "100%",
-              backgroundImage: `url(/images/${image})`,
+              backgroundImage: `url(${process.env.PUBLIC_URL}/images/${image})`,
               backgroundSize: "cover",
             }}
           ></motion.div>

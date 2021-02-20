@@ -156,7 +156,7 @@ const About = () => (
                     <Image
                       boxSize="3rem"
                       minWidth="3rem"
-                      src={`/social-logo/${s.icon}`}
+                      src={`${process.env.PUBLIC_URL}/social-logo/${s.icon}`}
                       alt={s.name}
                     />
                   ) : (
