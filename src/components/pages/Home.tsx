@@ -2,21 +2,29 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInterval } from "@chakra-ui/react";
 
-const images = [
-  "elebass.jpg",
-  "03_sunset.jpg",
-  "contrabass.jpg",
-  "headphone.jpg",
-  "midosuji.jpg",
-  "nabana.jpg",
-  "mirror.jpg",
-  "nabana2.jpg",
-  "sandanbeki.jpg",
-  "hashikui.jpg",
-  "osaka.jpg",
-];
+const randomImages = () => {
+  const images = [
+    "elebass.jpg",
+    "03_sunset.jpg",
+    "contrabass.jpg",
+    "headphone.jpg",
+    "midosuji.jpg",
+    "nabana.jpg",
+    "mirror.jpg",
+    "nabana2.jpg",
+    "sandanbeki.jpg",
+    "hashikui.jpg",
+    "osaka.jpg",
+  ];
+  for (let i = images.length; 1 < i; i--) {
+    let k = Math.floor(Math.random() * i);
+    [images[k], images[i - 1]] = [images[i - 1], images[k]];
+  }
+  return images;
+};
 
 const Home = () => {
+  const images = randomImages();
   const [dispImages, setDispImages] = useState<string[]>(images);
 
   const [height, setHeight] = useState<number>(0);
