@@ -8,10 +8,6 @@ const theme = {
         color: "gray.600",
         lineHeight: "tall",
         height: "100%",
-        overflow: "hidden",
-      },
-      "#root": {
-        padding: "3rem",
       },
     },
   },

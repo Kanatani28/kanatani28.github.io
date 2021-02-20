@@ -25,6 +25,7 @@ import { GrOracle, GrAndroid } from "react-icons/gr";
 import { GiArtificialIntelligence, GiTalk } from "react-icons/gi";
 import { IconType } from "react-icons/lib";
 import { MdPerson } from "react-icons/md";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 type License = {
   name: string;
@@ -94,86 +95,107 @@ const socials: MySocialInfo[] = [
     icon: "zenn.png",
   },
 ];
-const About = () => (
-  <motion.div
-    animate={{
-      y: 0,
-      opacity: 1,
-    }}
-    initial={{
-      y: "100vh",
-      opacity: 0,
-    }}
-    exit={{
-      y: "-100vh",
-      opacity: 0,
-    }}
-    transition={{
-      duration: 1,
-    }}
-    style={{ height: "100%", padding: "1.5rem" }}
-  >
-    <Heading as="h2" size="xl" mb="2">
-      About
-    </Heading>
-    {aboutParagraphs.map((paragraph, i) => (
-      <Box as="p" fontSize="md" mt={2} key={`paragraph-${i}`}>
-        {paragraph}
-      </Box>
-    ))}
-    <Flex mt={5}>
-      <Box>
-        <Heading as="h3" size="md" mb={2}>
-          保有資格
-        </Heading>
-        <List spacing={2}>
-          {licenses.map((license, i) => (
-            <ListItem flex="1" key={`license-${i}`}>
-              <ListIcon
-                fontSize="1.5rem"
-                as={license.icon}
-                verticalAlign="middle"
-              />
-              <Box as="span" verticalAlign="middle">
-                {license.name}
-              </Box>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-      <Spacer />
+const About = () => {
+  const flexDirecton = useBreakpointValue<"column" | "row">({
+    base: "column",
+    md: "row",
+  });
+  const fontSizeAbout = useBreakpointValue({
+    base: "0.75rem",
+    md: "1rem",
+  });
 
-      <Box>
-        <Heading as="h3" size="md" mb={3}>
-          Socials
-        </Heading>
-        <Stack direction="row" spacing={3}>
-          {socials.map((s, i) => {
-            return (
-              <Box key={`social-${i}`}>
-                <a href={s.url} rel="nofollow noreferrer" target="_blank">
-                  {typeof s.icon === "string" ? (
-                    <Image
-                      boxSize="3rem"
-                      minWidth="3rem"
-                      src={`${process.env.PUBLIC_URL}/social-logo/${s.icon}`}
-                      alt={s.name}
-                    />
-                  ) : (
-                    <Icon
-                      fontSize="3rem"
-                      as={s.icon.type}
-                      color={s.icon.color}
-                    />
-                  )}
-                </a>
-              </Box>
-            );
-          })}
-        </Stack>
-      </Box>
-    </Flex>
-  </motion.div>
-);
+  const headingSize = useBreakpointValue({
+    base: "lg",
+    md: "xl",
+  });
+
+  const isMobile = useBreakpointValue({
+    base: true,
+    md: false,
+  });
+
+  return (
+    <motion.div
+      animate={{
+        y: 0,
+        opacity: 1,
+      }}
+      initial={{
+        y: "100vh",
+        opacity: 0,
+      }}
+      exit={{
+        y: "-100vh",
+        opacity: 0,
+      }}
+      transition={{
+        duration: 1,
+      }}
+      style={{ height: "100%", padding: "1.5rem" }}
+    >
+      <Heading as="h2" size={headingSize} mb="2">
+        About
+      </Heading>
+      {aboutParagraphs.map((paragraph, i) => (
+        <Box as="p" fontSize={fontSizeAbout} mt={2} key={`paragraph-${i}`}>
+          {paragraph}
+        </Box>
+      ))}
+      <Flex mt={5} direction={flexDirecton}>
+        <Box display={isMobile ? "none" : "block"}>
+          <Heading as="h3" size="md" mb={2}>
+            保有資格
+          </Heading>
+          <List spacing={2}>
+            {licenses.map((license, i) => (
+              <ListItem flex="1" key={`license-${i}`}>
+                <ListIcon
+                  fontSize="1.5rem"
+                  as={license.icon}
+                  verticalAlign="middle"
+                />
+                <Box as="span" verticalAlign="middle">
+                  {license.name}
+                </Box>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+        <Spacer />
+
+        <Box>
+          <Heading as="h3" size="md" mb={3}>
+            Socials
+          </Heading>
+          <Stack direction="row" spacing={3}>
+            {socials.map((s, i) => {
+              return (
+                <Box key={`social-${i}`}>
+                  <a href={s.url} rel="nofollow noreferrer" target="_blank">
+                    {typeof s.icon === "string" ? (
+                      <Image
+                        boxSize="3rem"
+                        minWidth="3rem"
+                        src={`${process.env.PUBLIC_URL}/social-logo/${s.icon}`}
+                        alt={s.name}
+                      />
+                    ) : (
+                      <Icon
+                        fontSize="3rem"
+                        as={s.icon.type}
+                        color={s.icon.color}
+                      />
+                    )}
+                  </a>
+                </Box>
+              );
+            })}
+          </Stack>
+        </Box>
+      </Flex>
+    </motion.div>
+  );
+};
 
 export default About;
