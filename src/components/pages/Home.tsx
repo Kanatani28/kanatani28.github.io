@@ -1,51 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useInterval } from "@chakra-ui/react";
 
 const images = [
-  // "01_almond.png",
-  // "cafe.png",
-  // "elebass.jpg",
-  // "himeji.jpg",
-  // "mirror.jpg",
-  // "nabana2.jpg",
-  // "umeshu.jpg",
+  "elebass.jpg",
   "03_sunset.jpg",
-  // "contrabass.jpg",
-  // "headphone.jpg",
+  "contrabass.jpg",
+  "headphone.jpg",
   "midosuji.jpg",
-  // "nabana.jpg",
-  // "sandanbeki.jpg",
-  // "02_garden.jpg",
-  // "church.png",
-  // "hashikui.jpg",
-  // "lemon.jpg",
-  // "mitarai_keikoku.jpg",
-  // "osaka.jpg",
-  // "xmas_tree.jpg",
+  "nabana.jpg",
+  "mirror.jpg",
+  "nabana2.jpg",
+  "sandanbeki.jpg",
+  "hashikui.jpg",
+  "osaka.jpg",
 ];
 
 const Home = () => {
+  const [dispImages, setDispImages] = useState<string[]>(images);
+
+  const [height, setHeight] = useState<number>(0);
+  useInterval(() => {
+    setHeight(height + 2);
+    console.log(height);
+    if (height % 5800 === 0) {
+      setDispImages([...dispImages, ...images]);
+    }
+  }, 100);
+
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        y: "-100vh",
-        opacity: 0,
-      }}
-      transition={{
-        duration: 1,
-      }}
-      style={{
-        height: "100%",
-        backgroundImage: `url(/images/${images[0]})`,
-        backgroundSize: "cover",
-      }}
-    ></motion.div>
+    <>
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        exit={{
+          y: "-100vh",
+          opacity: 0,
+        }}
+        transition={{
+          duration: 1,
+        }}
+        style={{
+          height: "100%",
+        }}
+      >
+        {dispImages.map((image, i) => (
+          <motion.div
+            key={`image-${i}`}
+            initial={false}
+            animate={{
+              y: `-${height}px`,
+            }}
+            transition={{
+              // duration: 20,
+              repeat: Infinity,
+            }}
+            style={{
+              height: "100%",
+              backgroundImage: `url(/images/${image})`,
+              backgroundSize: "cover",
+            }}
+          ></motion.div>
+        ))}
+      </motion.div>
+    </>
   );
 };
 
