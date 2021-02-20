@@ -63,14 +63,14 @@ type SnsType = {
 const socials: SnsType[] = [
   {
     url:
-      "https://twitter.com/share?url=localhost:3000&via=maroKanatani&related=maroKanatani&hashtags=hashtag,hashtag2&text=リンクテキスト",
+      "https://twitter.com/share?url=https://kanatani28.github.io&via=maroKanatani&related=maroKanatani&text=maroKanatani's Page",
     icon: {
       color: "blue.400",
       type: FaTwitterSquare,
     },
   },
   {
-    url: "http://www.facebook.com/share.php?u={URL}",
+    url: "http://www.facebook.com/share.php?u=https://kanatani28.github.io",
     icon: {
       color: "blue.700",
       type: FaFacebookSquare,
@@ -78,7 +78,7 @@ const socials: SnsType[] = [
   },
   {
     url:
-      "http://b.hatena.ne.jp/add?mode=confirm&url={URL}&title={ページのタイトル}",
+      "http://b.hatena.ne.jp/add?mode=confirm&url=https://kanatani28.github.io&title=maroKanatani",
     icon: {
       color: "blue.500",
       type: SiHatenabookmark,
