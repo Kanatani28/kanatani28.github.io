@@ -94,13 +94,7 @@ const menuAnimation: (i: number) => MotionProps = (i) => {
 
 const SideMenu = React.memo(() => {
   return (
-    <Flex
-      direction="column"
-      h="100%"
-      justifyContent="flex-end"
-      pb={3}
-      bgColor="yellow"
-    >
+    <Flex direction="column" h="100%" justifyContent="flex-end" pb={3}>
       <nav>
         <ul style={{ listStyle: "none" }}>
           {routes.map((route, i) => (

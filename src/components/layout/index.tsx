@@ -21,7 +21,7 @@ const Layout = React.memo(() => {
         <SideMenu />
       </GridItem>
       <GridItem colSpan={3}>
-        <AnimatePresence exitBeforeEnter initial={false}>
+        <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={rootPath}>
             {routes.map((route) => (
               <Route

@@ -1,11 +1,25 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ShareButton from "../atoms/ShareButton";
-import { pagingAnimationProps } from "../../animations";
 
 const About = () => (
   <motion.div
-    {...pagingAnimationProps}
+    // {...pagingAnimationProps}
+    animate={{
+      y: 0,
+      opacity: 1,
+    }}
+    initial={{
+      y: "100vh",
+      opacity: 0,
+    }}
+    exit={{
+      y: "-100vh",
+      opacity: 0,
+    }}
+    transition={{
+      duration: 1,
+    }}
     style={{ height: "100%", backgroundColor: "lightcoral" }}
   >
     <div>About</div>
