@@ -29,7 +29,7 @@ const ShareButton = () => (
     <MenuButton>
       <Popover placement="right">
         <PopoverTrigger>
-          <a>Share</a>
+          <button style={{ outline: "none" }}>Share</button>
         </PopoverTrigger>
         <PopoverContent>
           <PopoverArrow />
