@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import SideMenu from "./SideMenu";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";

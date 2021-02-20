@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Header = () => (
   <Box ml="auto" as="header" flex="1" style={{ writingMode: "vertical-rl" }}>
-    <Heading>
+    <Heading as="h1">
       <motion.div
         initial={{ y: "-50vh", opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
