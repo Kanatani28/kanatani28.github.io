@@ -7,9 +7,10 @@ import {
   PopoverArrow,
   PopoverBody,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Icon,
+  useBreakpointValue,
+  Spacer,
 } from "@chakra-ui/react";
 import routes from "../../routes";
 
@@ -24,26 +25,33 @@ const MenuButton = ({ children }: { children: string | JSX.Element }) => (
   </Box>
 );
 
-const ShareButton = () => (
-  <>
-    <MenuButton>
-      <Popover placement="right">
-        <PopoverTrigger>
-          <button style={{ outline: "none" }}>Share</button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverArrow />
-          <PopoverHeader>Share please</PopoverHeader>
-          <PopoverBody>
-            {socials.map((social) => (
-              <SocialButton key={social.url} {...social} />
-            ))}
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-    </MenuButton>
-  </>
-);
+const ShareButton = () => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  return (
+    <>
+      <MenuButton>
+        <Popover placement={isMobile ? "top" : "right"}>
+          <PopoverTrigger>
+            <button style={{ outline: "none" }}>Share</button>
+          </PopoverTrigger>
+          <PopoverContent w={isMobile ? "auto" : "75%"}>
+            <PopoverArrow />
+            <PopoverBody>
+              <Flex direction={isMobile ? "column" : "row"}>
+                {socials.map((social, i) => (
+                  <>
+                    <SocialButton key={social.url} {...social} />
+                    {i !== socials.length - 1 && <Spacer />}
+                  </>
+                ))}
+              </Flex>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </MenuButton>
+    </>
+  );
+};
 
 type SnsType = {
   url: string;
