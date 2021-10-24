@@ -9,6 +9,9 @@ const theme = {
         lineHeight: "tall",
         height: "100%",
       },
+      ".overflow-hidden": {
+        overflow: "hidden",
+      }
     },
   },
 };

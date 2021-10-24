@@ -1,5 +1,6 @@
 import About from "./components/pages/About";
 import Home from "./components/pages/Home";
+import NotFound from "./components/pages/NotFound";
 
 type Route = {
   path: string;
@@ -18,6 +19,11 @@ const routes: Route[] = [
     name: "About",
     component: About,
   },
+  {
+    path: "*",
+    name: "NotFound",
+    component: NotFound,
+  }
 ];
 
 export default routes;

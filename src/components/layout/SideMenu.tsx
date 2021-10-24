@@ -11,6 +11,7 @@ import {
   Icon,
   useBreakpointValue,
   Spacer,
+  Center,
 } from "@chakra-ui/react";
 import routes from "../../routes";
 
@@ -87,9 +88,11 @@ const socials: SnsType[] = [
 ];
 
 const SocialButton = ({ url, icon }: SnsType) => (
-  <a href={url} rel="nofollow noreferrer" target="_blank">
-    <Icon w={12} h={12} color={icon.color} as={icon.type} />
-  </a>
+  <Center>
+    <a href={url} rel="nofollow noreferrer" target="_blank">
+      <Icon w={12} h={12} color={icon.color} as={icon.type} />
+    </a>
+  </Center>
 );
 
 const menuAnimation: (i: number) => MotionProps = (i) => {
