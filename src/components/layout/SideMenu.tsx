@@ -101,11 +101,12 @@ const menuAnimation: (i: number) => MotionProps = (i) => {
 };
 
 const SideMenu = React.memo(() => {
+  const menuRoutes = routes.filter(route => route.name !== "NotFound")
   return (
     <Flex direction="column" h="100%" justifyContent="flex-end" pb={3}>
       <nav>
         <ul style={{ listStyle: "none" }}>
-          {routes.map((route, i) => (
+          {menuRoutes.map((route, i) => (
             <li key={route.path}>
               <motion.div {...menuAnimation(i)}>
                 <Link to={route.path}>
@@ -115,7 +116,7 @@ const SideMenu = React.memo(() => {
             </li>
           ))}
           <li>
-            <motion.div {...menuAnimation(routes.length)}>
+            <motion.div {...menuAnimation(menuRoutes.length)}>
               <ShareButton />
             </motion.div>
           </li>
