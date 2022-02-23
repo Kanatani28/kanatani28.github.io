@@ -35,7 +35,6 @@ const Home = () => {
       return;
     }
     setImageY(imageY + 2);
-    console.log(imageY);
     if (imageY % 5800 === 0) {
       setDispImages([...dispImages, ...images]);
     }
